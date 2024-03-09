@@ -9,7 +9,7 @@ That is a web app on Python for monitoring your finances. It was a problem to so
 * selling all or some of a stock, again verifying the portfolio, and
 * verifying that your history page shows all transactions for your logged-in user.
 
-### Also were tested some unexpected usage, as by:
+### Also was implemented and tested protection against unexpected usage, as by:
 
 * inputting alphabetical strings into forms when only numbers are expected,
 * inputting zero or negative numbers into forms when only positive numbers are expected,
