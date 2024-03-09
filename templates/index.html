@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block main %}
+    <p><strong>Available Cash:</strong> {{ usd(cash) }}</p>
+    <table style="margin-left: auto; margin-right: auto">
+        <tr>
+            <th>Stock Name</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Actual Price</th>
+            <th>Difference</th>
+            <th>Sell</th>
+            <th>Buy</th>
+        </tr>
+        {% for op in operations %}
+            <tr>
+                <td>{{ op.stock_name }}</td>
+                <td>{{ op.total_qty }}</td>
+                <td>{{ usd(op.total_price) }}</td>
+                <td>{{ usd(new_price[loop.index0]) }}</td>
+                <td>{{ diff[loop.index0] }}%</td>
+                <td>
+                    <form method="POST" action="/">
+                        <input type="hidden" name="action" value="/sell">
+                        <input type="hidden" name="stock_name" value="{{ op.stock_name }}">
+                        <button class="btn btn-primary" type="submit" style="background-color: red;">Sell</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="/">
+                        <input type="hidden" name="action" value="/buy">
+                        <input type="hidden" name="stock_name" value="{{ op.stock_name }}">
+                        <button class="btn btn-primary" type="submit" style="background-color: green;">Buy</button>
+                    </form>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

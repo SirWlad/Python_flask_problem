@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <p><strong>Available Cash:</strong> {{ usd(cash) }}</p>
+    <table style="margin-left: auto; margin-right: auto">
+        <tr>
+            <th>Date</th>
+            <th>Stock Name</th>
+            <th>Stock Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+        {% for op in operations %}
+            <tr>
+                <td>{{ op.date }}</td>
+                <td>{{ op.stock_name }}</td>
+                <td>{{ usd(op.stock_price) }}</td>
+                <td>{{ op.qty }}</td>
+                <td>{{ usd(op.price) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

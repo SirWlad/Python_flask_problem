@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <p><strong>Available Cash:</strong> {{ cash }}</p>
+    <form action="/sell" method="post">
+        <div class="mb-3">
+
+            {% if symbol != "Shares symbol" %}
+                <input type="hidden" name="symbol" value="{{ symbol }}">{{ symbol }}</input>
+            {% else %}
+                <select name="symbol">
+                    {% for item in symbols %}
+                        <option value="{{ item.stock_name }}">{{ item.stock_name }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+
+
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="shares" placeholder="Shares" type="number" min="1" step="1">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell symbol</button>
+    </form>
+{% endblock %}
